@@ -14,14 +14,13 @@ router.post("/", async (req, res) => {
   /*if(req.body.cep === undefined || req.body.cep === null){
     res.send(400)
   }*/
+  if (!req.body.cep) {
+    res.status(400).send({
+      message: "Please insert a CEP",
+    });
+  }
 
   if (req.body.cep !== undefined) {
-    if (!req.body.cep) {
-      res.status(400).send({
-        message: "Please insert a CEP",
-      });
-    }
-
     if (req.body.cep.length < 8 || req.body.cep.length > 8) {
       res.status(401).send({
         message: "The CEP is wrong, check out the CEP number and try again",
@@ -44,6 +43,8 @@ router.post("/", async (req, res) => {
     };
     address();
   }
+
+  
 });
 
 module.exports = router;
