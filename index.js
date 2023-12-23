@@ -14,6 +14,7 @@ require("dotenv").config();
 app.get("/", (req, res) => {
   res.send("Hello motherfucker");
 });
+
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
