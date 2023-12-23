@@ -37,7 +37,7 @@ router.post("/", async (req, res) => {
         res.status(200).send(result);
       } catch (err) {
         res.status(500).send({
-          message: "Couldn't get the info. Please try again later",
+          message: `Couldn't get the info. Please try again later. Error ${err}`
         });
       }
     };
