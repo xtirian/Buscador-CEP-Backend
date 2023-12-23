@@ -8,17 +8,21 @@ const app = express();
 
 //app.get('/user', function(req, res) {  res.status(200).json({ name: 'john' });});
 
-
-
 app.use("/api/v1/address", router);
 
 //TESTING SUCESS
 
 test("Testing route with CEP to PASS", (done) => {
   try {
-    request(app).post("/api/v1/address").send({
-      cep: "25250640",
-    });
+    request(app)
+      .post("/api/v1/cep")
+      .send({
+        address: {
+          state: "RJ",
+          city: "Duque de Caxias",
+          street: "Avenida Ana Dantas",
+        },
+      });
     /*.then(async () => {
         await expect(200).toContain("25250-640");
       });*/
@@ -50,9 +54,13 @@ test("Testing route without CEP to FAIL", (done) => {
 
 test("Testing route with incomplete CEP to FAIL", (done) => {
   try {
-    request(app).post("/api/v1/address").send({
-      cep: "00"
-    });
+    request(app)
+      .post("/api/v1/address")
+      .send({
+        address: {
+          state: "RJ",
+        },
+      });
     /*.then(async () => {
         await expect(200).toContain("25250-640");
       });*/
@@ -67,9 +75,12 @@ test("Testing route with incomplete CEP to FAIL", (done) => {
 
 test("Testing route with wrong CEP to FAIL", (done) => {
   try {
-    request(app).post("/api/v1/address").send({
-      cep: "0065165065861"
-    });
+    request(app)
+      .post("/api/v1/address")
+      .send({
+        address: {
+        },
+      });
     /*.then(async () => {
         await expect(200).toContain("25250-640");
       });*/
