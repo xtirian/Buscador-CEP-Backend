@@ -2,6 +2,7 @@
 const express = require("express");
 const app = express();
 const port = 8080;
+const cors = require('cors');
 
 // MAKE EXPRESS RETURN JSON
 app.use(express.json());
