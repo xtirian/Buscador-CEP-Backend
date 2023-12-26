@@ -5,6 +5,7 @@ const port = 8080;
 
 // MAKE EXPRESS RETURN JSON
 app.use(express.json());
+app.use(cors());
 
 //CONFIG DOT ENV
 require("dotenv").config();
@@ -14,6 +15,7 @@ require("dotenv").config();
 app.get("/", (req, res) => {
   res.send("Hello motherfucker");
 });
+
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });

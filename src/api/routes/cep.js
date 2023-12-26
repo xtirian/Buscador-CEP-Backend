@@ -2,20 +2,37 @@
 const express = require("express");
 const router = express.Router();
 
-const handleAddress = require("../../services/handleAddress");
+const handleCep = require("../../services/handleCep");
 
+router.post("/", async (req, res) => {
 
-router.get("/", async (req, res) => {
-
-  if (!req.body.city || !req.body.state || !req.body.street) {
+  if (!req.body.address) {
     res.status(400).send({
       message: "Can't find withou all information",
     });
-  } 
+  }
 
-  res.send({
-    message: "Get concluido"
-  })
+  if(req.body.address){   
+
+    const cep = async () =>{
+      try{
+        const result = await handleCep.getAddress(req.body.address);
+
+        res.status(200).send(result)
+
+      } catch(err){
+        res.status(500).send({
+          message: `Couldn't get the info. Please try again later. Error ${err}`
+        });
+      }
+    }
+
+    cep()
+
+    
+  }
+
+
 })
 
 

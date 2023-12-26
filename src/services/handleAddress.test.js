@@ -14,3 +14,20 @@ test("Require test for CEP: 25250-415", async () => {
     uf: "RJ",
   });
 });
+
+test("Require test for CEP: 01001-000", async () => {
+  expect(await handleAddress.getCep("01001000")).toEqual({
+    cep: "01001-000",
+    logradouro: "Praça da Sé",
+    complemento: "lado ímpar",
+    bairro: "Sé",
+    localidade: "São Paulo",
+    uf: "SP",
+    ibge: "3550308",
+    gia: "1004",
+    ddd: "11",
+    siafi: "7107",
+  });
+});
+
+
