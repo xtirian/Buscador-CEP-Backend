@@ -4,7 +4,6 @@ const router = express.Router();
 
 const handleCep = require("../../services/handleCep");
 
-
 router.post("/", async (req, res) => {
 
   if (!req.body.address) {

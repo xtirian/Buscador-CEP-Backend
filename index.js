@@ -5,6 +5,7 @@ const port = 8080;
 
 // MAKE EXPRESS RETURN JSON
 app.use(express.json());
+app.use(cors());
 
 //CONFIG DOT ENV
 require("dotenv").config();
